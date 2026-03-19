@@ -1,0 +1,112 @@
+[00:05:29.090] Server  ERROR   ⨯ Error: Cannot find module 'next/dist/client/components/builtin/global-not-found'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.102] Server  ERROR   Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.115] Server  ERROR   ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.129] Server  ERROR   Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.146] Server  ERROR   ⨯ Error: Cannot find module 'next/dist/client/components/builtin/global-not-found'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.157] Server  ERROR   Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.169] Server  ERROR   ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.182] Server  ERROR   Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.197] Server  ERROR   ⨯ Error: Cannot find module 'next/dist/client/components/builtin/global-not-found'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.207] Server  ERROR   Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.217] Server  ERROR   ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.227] Server  ERROR   Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.250] Server  ERROR   ⨯ Error: Cannot find module 'next/dist/client/components/builtin/global-not-found'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.266] Server  ERROR   Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.282] Server  ERROR   ⨯ Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
+[00:05:29.296] Server  ERROR   Error: Cannot find module 'next/dist/pages/_error'
+Require stack:
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/on-demand-entry-handler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/dev/hot-reloader-turbopack.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/router-server.js
+- /Users/marco.glauser/++Code--Projects++/migros-app/node_modules/next/dist/server/lib/start-server.js
