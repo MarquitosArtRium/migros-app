@@ -1,73 +1,29 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Heart, Clock, X, Check } from "lucide-react";
 import { Search } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 const FILTERS = ["Highlights", "Eigene Rezepte", "Thermomix"];
 
 const DAYS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 const SLOTS = ["Frühstück", "Mittagessen", "Abendessen"];
 
-const RECIPES = [
-  {
-    id: 1,
-    tag: "Vegan",
-    tagColor: "#4CAF50",
-    category: "Fast ohne Schnippeln",
-    name: "Kichererbsen-Curry mit Couscous",
-    time: "15 Min.",
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop",
-  },
-  {
-    id: 2,
-    tag: "Vegetarisch",
-    tagColor: "#4CAF50",
-    category: "Schnelle Küche",
-    name: "Pasta al Limone mit Ricotta",
-    time: "20 Min.",
-    image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&h=400&fit=crop",
-  },
-  {
-    id: 3,
-    tag: "Fleisch",
-    tagColor: "#e53935",
-    category: "Familienrezept",
-    name: "Zürcher Geschnetzeltes mit Rösti",
-    time: "35 Min.",
-    image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop",
-  },
-  {
-    id: 4,
-    tag: "Fisch",
-    tagColor: "#1e88e5",
-    category: "Leicht & gesund",
-    name: "Lachs mit Spinat und Kartoffeln",
-    time: "25 Min.",
-    image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop",
-  },
-  {
-    id: 5,
-    tag: "Vegan",
-    tagColor: "#4CAF50",
-    category: "Meal Prep",
-    name: "Buddha Bowl mit Tahini-Dressing",
-    time: "30 Min.",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop",
-  },
-  {
-    id: 6,
-    tag: "Vegetarisch",
-    tagColor: "#4CAF50",
-    category: "Comfort Food",
-    name: "Kürbissuppe mit Ingwer",
-    time: "25 Min.",
-    image: "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=600&h=400&fit=crop",
-  },
-];
+type Recipe = {
+  id: string;
+  title: string;
+  description?: string;
+  image_url?: string;
+  category?: string;
+  tags?: string[];
+  prep_time?: number | null;
+  cook_time?: number | null;
+  servings?: number;
+};
 
 interface AddToPlanModalProps {
-  recipe: typeof RECIPES[0];
+  recipe: Recipe;
   onClose: () => void;
   onAdd: (day: string, slot: string) => void;
 }
@@ -94,7 +50,7 @@ function AddToPlanModal({ recipe, onClose, onAdd }: AddToPlanModalProps) {
               <X className="w-5 h-5" />
             </button>
           </div>
-          <p className="text-[13px] text-[#9d9d9d] mb-5">{recipe.name}</p>
+          <p className="text-[13px] text-[#9d9d9d] mb-5">{recipe.title}</p>
 
           {/* Day picker */}
           <p className="text-[12px] font-semibold text-[#5d5d5d] uppercase tracking-wide mb-2">Tag</p>
@@ -150,9 +106,23 @@ function AddToPlanModal({ recipe, onClose, onAdd }: AddToPlanModalProps) {
 
 export function RecipesTab() {
   const [activeFilter, setActiveFilter] = useState("Highlights");
-  const [liked, setLiked] = useState<Set<number>>(new Set());
-  const [addingRecipe, setAddingRecipe] = useState<typeof RECIPES[0] | null>(null);
-  const [added, setAdded] = useState<Record<number, { day: string; slot: string }>>({});
+  const [liked, setLiked] = useState<Set<string>>(new Set());
+  const [addingRecipe, setAddingRecipe] = useState<Recipe | null>(null);
+  const [added, setAdded] = useState<Record<string, { day: string; slot: string }>>({});
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    supabase
+      .from("recipes")
+      .select("*")
+      .then(({ data, error }) => {
+        if (error) setError(error.message);
+        else setRecipes(data ?? []);
+        setLoading(false);
+      });
+  }, []);
 
   const handleAdd = (day: string, slot: string) => {
     if (!addingRecipe) return;
@@ -188,57 +158,73 @@ export function RecipesTab() {
 
       {/* Recipe cards */}
       <div className="flex flex-col gap-3">
-        {RECIPES.map((r) => {
+        {loading && (
+          <p className="text-[14px] text-gray-400 text-center py-8">Rezepte werden geladen...</p>
+        )}
+        {error && (
+          <p className="text-[14px] text-red-400 text-center py-8">Fehler: {error}</p>
+        )}
+        {!loading && !error && recipes.length === 0 && (
+          <p className="text-[14px] text-gray-400 text-center py-8">Keine Rezepte gefunden.</p>
+        )}
+        {recipes.map((r) => {
           const isAdded = !!added[r.id];
+          const totalTime = (r.prep_time ?? 0) + (r.cook_time ?? 0);
+          const firstTag = r.tags?.[0];
           return (
             <div key={r.id} className="bg-white border border-[#E7E7E7] rounded-[8px] overflow-hidden">
               {/* Image */}
-              <div className="relative" style={{ height: 160 }}>
-                <Image
-                  src={r.image}
-                  alt={r.name}
-                  fill
-                  className="object-cover"
-                  sizes="384px"
-                />
-                {/* Tag */}
-                <span
-                  className="absolute top-2.5 left-2.5 text-white text-[11px] font-semibold px-2 py-0.5 rounded-[4px]"
-                  style={{ background: r.tagColor }}
-                >
-                  {r.tag}
-                </span>
-                {/* Heart */}
-                <button
-                  onClick={() => setLiked((prev) => {
-                    const next = new Set(prev);
-                    next.has(r.id) ? next.delete(r.id) : next.add(r.id);
-                    return next;
-                  })}
-                  className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm"
-                >
-                  <Heart
-                    className="w-4 h-4"
-                    fill={liked.has(r.id) ? "#FF6600" : "none"}
-                    stroke={liked.has(r.id) ? "#FF6600" : "#9d9d9d"}
+              {r.image_url && (
+                <div className="relative" style={{ height: 160 }}>
+                  <Image
+                    src={r.image_url}
+                    alt={r.title}
+                    fill
+                    className="object-cover"
+                    sizes="384px"
                   />
-                </button>
-              </div>
+                  {/* Tag */}
+                  {firstTag && (
+                    <span className="absolute top-2.5 left-2.5 text-white text-[11px] font-semibold px-2 py-0.5 rounded-[4px] bg-[#4CAF50]">
+                      {firstTag}
+                    </span>
+                  )}
+                  {/* Heart */}
+                  <button
+                    onClick={() => setLiked((prev) => {
+                      const next = new Set(prev);
+                      next.has(r.id) ? next.delete(r.id) : next.add(r.id);
+                      return next;
+                    })}
+                    className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm"
+                  >
+                    <Heart
+                      className="w-4 h-4"
+                      fill={liked.has(r.id) ? "#FF6600" : "none"}
+                      stroke={liked.has(r.id) ? "#FF6600" : "#9d9d9d"}
+                    />
+                  </button>
+                </div>
+              )}
 
               {/* Info + action */}
               <div className="px-3 pt-2.5 pb-3">
-                <p className="text-[11px] font-semibold mb-0.5" style={{ color: "#FF6600" }}>
-                  {r.category}
-                </p>
-                <p className="text-[14px] font-semibold text-[#2e2e2e] leading-snug">{r.name}</p>
+                {r.category && (
+                  <p className="text-[11px] font-semibold mb-0.5" style={{ color: "#FF6600" }}>
+                    {r.category}
+                  </p>
+                )}
+                <p className="text-[14px] font-semibold text-[#2e2e2e] leading-snug">{r.title}</p>
                 <div className="flex items-center justify-between mt-2">
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3 text-[#9d9d9d]" />
-                    <span className="text-[12px] text-[#9d9d9d]">{r.time}</span>
-                  </div>
+                  {totalTime > 0 && (
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-[#9d9d9d]" />
+                      <span className="text-[12px] text-[#9d9d9d]">{totalTime} Min.</span>
+                    </div>
+                  )}
                   <button
                     onClick={() => setAddingRecipe(r)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-[12px] font-semibold transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-[12px] font-semibold transition-colors ml-auto"
                     style={{
                       background: isAdded ? "#F0F0F0" : "#FF6600",
                       color: isAdded ? "#5d5d5d" : "white",

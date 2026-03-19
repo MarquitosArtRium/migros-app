@@ -33,10 +33,10 @@ function KochenIcon() {
 
 const navItems = [
   { href: "/", label: "Home", icon: <MigrosLogo /> },
-  { href: "/angebote", label: "Angebote", icon: <PercentIcon className="w-6 h-6" /> },
+  { href: "/angebote", label: "Angebote", icon: <PercentIcon className="w-6 h-6" />, disabled: true },
   { href: "/planen", label: "Planen", icon: <KochenIcon /> },
-  { href: "/liste", label: "Liste", icon: <ClipboardIcon className="w-6 h-6" />, badge: 5 },
-  { href: "/subito", label: "subitoGo", icon: <SubitoGoIcon /> },
+  { href: "/liste", label: "Liste", icon: <ClipboardIcon className="w-6 h-6" />, badge: 5, disabled: true },
+  { href: "/subito", label: "subitoGo", icon: <SubitoGoIcon />, disabled: true },
 ];
 
 export default function BottomNav({ mode }: { mode: Mode }) {
@@ -50,19 +50,17 @@ export default function BottomNav({ mode }: { mode: Mode }) {
       <div className="flex items-center justify-around px-2 pt-2 pb-2">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex flex-col items-center gap-0.5 flex-1"
-            >
+          const isDisabled = "disabled" in item && item.disabled;
+
+          const content = (
+            <>
               <div className="relative">
                 <div className={`px-3 py-1.5 rounded-[8px] transition-colors ${isActive ? "bg-orange-50" : ""}`}>
-                  <span className={isActive ? "text-[#FF6600]" : "text-gray-500"}>
+                  <span className={isActive ? "text-[#FF6600]" : isDisabled ? "text-gray-300" : "text-gray-500"}>
                     {item.icon}
                   </span>
                 </div>
-                {"badge" in item && item.badge && (
+                {"badge" in item && item.badge && !isDisabled && (
                   <span
                     className="absolute -top-0.5 -right-0.5 bg-[#FF6600] text-white rounded-full flex items-center justify-center font-bold"
                     style={{ width: 16, height: 16, fontSize: 9 }}
@@ -71,9 +69,27 @@ export default function BottomNav({ mode }: { mode: Mode }) {
                   </span>
                 )}
               </div>
-              <span className={`text-xs ${isActive ? "font-semibold text-[#FF6600]" : "text-gray-500"}`}>
+              <span className={`text-xs ${isActive ? "font-semibold text-[#FF6600]" : isDisabled ? "text-gray-300" : "text-gray-500"}`}>
                 {item.label}
               </span>
+            </>
+          );
+
+          if (isDisabled) {
+            return (
+              <div key={item.href} className="flex flex-col items-center gap-0.5 flex-1 cursor-not-allowed">
+                {content}
+              </div>
+            );
+          }
+
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex flex-col items-center gap-0.5 flex-1"
+            >
+              {content}
             </Link>
           );
         })}
