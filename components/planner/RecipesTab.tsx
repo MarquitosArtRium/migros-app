@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Heart, Clock, X, Check } from "lucide-react";
 import { Search } from "lucide-react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 
 const FILTERS = ["Highlights", "Eigene Rezepte", "Thermomix"];
@@ -173,48 +174,57 @@ export function RecipesTab() {
           const firstTag = r.tags?.[0];
           return (
             <div key={r.id} className="bg-white border border-[#E7E7E7] rounded-[8px] overflow-hidden">
-              {/* Image */}
-              {r.image_url && (
-                <div className="relative" style={{ height: 160 }}>
-                  <Image
-                    src={r.image_url}
-                    alt={r.title}
-                    fill
-                    className="object-cover"
-                    sizes="384px"
-                  />
-                  {/* Tag */}
-                  {firstTag && (
-                    <span className="absolute top-2.5 left-2.5 text-white text-[11px] font-semibold px-2 py-0.5 rounded-[4px] bg-[#4CAF50]">
-                      {firstTag}
-                    </span>
-                  )}
-                  {/* Heart */}
-                  <button
-                    onClick={() => setLiked((prev) => {
-                      const next = new Set(prev);
-                      next.has(r.id) ? next.delete(r.id) : next.add(r.id);
-                      return next;
-                    })}
-                    className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm"
-                  >
-                    <Heart
-                      className="w-4 h-4"
-                      fill={liked.has(r.id) ? "#FF6600" : "none"}
-                      stroke={liked.has(r.id) ? "#FF6600" : "#9d9d9d"}
+              <Link href={`/rezepte/${r.id}`}>
+                {/* Image */}
+                {r.image_url && (
+                  <div className="relative" style={{ height: 160 }}>
+                    <Image
+                      src={r.image_url}
+                      alt={r.title}
+                      fill
+                      className="object-cover"
+                      sizes="384px"
                     />
-                  </button>
+                    {/* Tag */}
+                    {firstTag && (
+                      <span className="absolute top-2.5 left-2.5 text-white text-[11px] font-semibold px-2 py-0.5 rounded-[4px] bg-[#4CAF50]">
+                        {firstTag}
+                      </span>
+                    )}
+                    {/* Heart */}
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setLiked((prev) => {
+                          const next = new Set(prev);
+                          next.has(r.id) ? next.delete(r.id) : next.add(r.id);
+                          return next;
+                        });
+                      }}
+                      className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm"
+                    >
+                      <Heart
+                        className="w-4 h-4"
+                        fill={liked.has(r.id) ? "#FF6600" : "none"}
+                        stroke={liked.has(r.id) ? "#FF6600" : "#9d9d9d"}
+                      />
+                    </button>
+                  </div>
+                )}
+
+                {/* Title */}
+                <div className="px-3 pt-2.5 pb-1">
+                  {r.category && (
+                    <p className="text-[11px] font-semibold mb-0.5" style={{ color: "#FF6600" }}>
+                      {r.category}
+                    </p>
+                  )}
+                  <p className="text-[14px] font-semibold text-[#2e2e2e] leading-snug">{r.title}</p>
                 </div>
-              )}
+              </Link>
 
               {/* Info + action */}
-              <div className="px-3 pt-2.5 pb-3">
-                {r.category && (
-                  <p className="text-[11px] font-semibold mb-0.5" style={{ color: "#FF6600" }}>
-                    {r.category}
-                  </p>
-                )}
-                <p className="text-[14px] font-semibold text-[#2e2e2e] leading-snug">{r.title}</p>
+              <div className="px-3 pt-1 pb-3">
                 <div className="flex items-center justify-between mt-2">
                   {totalTime > 0 && (
                     <div className="flex items-center gap-1">
