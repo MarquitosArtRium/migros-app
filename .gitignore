@@ -16,6 +16,7 @@
 # next.js
 /.next/
 /out/
+migros-app/.next/
 
 # production
 /build
